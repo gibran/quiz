@@ -13,5 +13,6 @@ namespace Presentation.Models
         public QuestionLevel Level { get; set; }
         public List<AnswerOption> Options { get; set; }
         public bool IsActive { get; set; }
+        public string CreatedBy { get; set; }
     }
 }
