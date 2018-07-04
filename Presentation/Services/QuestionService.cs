@@ -66,7 +66,7 @@ namespace Presentation.Services
         {
             try
             {
-                var result = await _genericRepository.List();
+                var result = _genericRepository.List();
                 return result;
             }
             catch (Exception ex)

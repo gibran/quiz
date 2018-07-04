@@ -5,6 +5,7 @@ using Presentation.Models;
 using Microsoft.Extensions.Configuration;
 using Presentation.Services;
 using Presentation.Repositories;
+using Presentation.Configurations;
 
 namespace Presentation.Controllers
 {
@@ -12,14 +13,16 @@ namespace Presentation.Controllers
     [Route("api/[controller]")]
     public class EventController : Controller
     {
-        IConfiguration _configuration;
         EventService _eventService;
 
         public EventController(IConfiguration configuration)
         {
-            _configuration = configuration;
+            var connectionString = configuration.GetConnectionString("default");
+            var databaseName = configuration.GetSection("AppSettings:databaseName").Value;
 
-            var repository = new GenericRepository<Event>();
+            var options = new MongoDbOptions(connectionString, databaseName, CollectionIds.Event);
+
+            var repository = new GenericRepository<Event>(options);
 
             _eventService = new EventService(repository);
         }

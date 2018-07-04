@@ -9,6 +9,6 @@ namespace Presentation.Repositories
 
         Task<T> GetById(string id);
 
-        Task<List<T>> List();
+        List<T> List();
     }
 }

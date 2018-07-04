@@ -5,20 +5,22 @@ using Microsoft.Extensions.Configuration;
 using Presentation.Models;
 using Presentation.Services;
 using Presentation.Repositories;
+using Presentation.Configurations;
 
 namespace Presentation.Controllers
 {
     [Route("api/[controller]")]
     public class QuestionsController : Controller
     {
-        IConfiguration _configuration;
         QuestionService _questionService;
 
         public QuestionsController(IConfiguration configuration)
         {
-            _configuration = configuration;
+            var connectionString = configuration.GetConnectionString("default");
+            var databaseName = configuration.GetSection("AppSettings:databaseName").Value;
 
-            var repository = new GenericRepository<Question>();
+            var options = new MongoDbOptions(connectionString, databaseName, CollectionIds.Questions);
+            var repository = new GenericRepository<Question>(options);
 
             _questionService = new QuestionService(repository);
         }

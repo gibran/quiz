@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Presentation.Models
 {
-    public class Event
+    public class Event : IDocument
     {
         public string Id { get; set; }
         public string Name { get; set; }

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Presentation.Models
 {
 
-    public class Question
+    public class Question : IDocument
     {
         public string Id { get; set; }
         public string Text { get; set; }
