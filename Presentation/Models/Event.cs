@@ -13,6 +13,7 @@ namespace Presentation.Models
 
         public bool IsPublished { get; set; }
         public bool IsActive { get; set; }
+        public int QuestionsLimit { get; set; }
         public List<Culture> Cultures { get; set; }
     }
 }
