@@ -18,7 +18,7 @@ namespace Presentation.Controllers
         public EventController(IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString("default");
-            var databaseName = configuration.GetSection("AppSettings:databaseName").Value;
+            var databaseName = configuration.GetSection("databaseName").Value;
 
             var options = new MongoDbOptions(connectionString, databaseName, CollectionIds.Event);
 
@@ -55,11 +55,11 @@ namespace Presentation.Controllers
         }
 
         [HttpPost]
-        public async Task<string> Create([FromBody] Event question)
+        public async Task<string> Create([FromBody] Event @event)
         {
             try
             {
-                var result = await _eventService.Save(question);
+                var result = await _eventService.Save(@event);
                 return result;
             }
             catch (System.Exception ex)
@@ -83,11 +83,11 @@ namespace Presentation.Controllers
         }
 
         [HttpPut]
-        public async Task<string> Update([FromBody] Event question)
+        public async Task<string> Update([FromBody] Event @event)
         {
             try
             {
-                var result = await _eventService.Save(question);
+                var result = await _eventService.Save(@event);
                 return result;
             }
             catch (System.Exception ex)

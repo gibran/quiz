@@ -17,7 +17,7 @@ namespace Presentation.Controllers
         public QuestionsController(IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString("default");
-            var databaseName = configuration.GetSection("AppSettings:databaseName").Value;
+            var databaseName = configuration.GetSection("databaseName").Value;
 
             var options = new MongoDbOptions(connectionString, databaseName, CollectionIds.Questions);
             var repository = new GenericRepository<Question>(options);
